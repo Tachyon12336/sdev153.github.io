@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Plexus | United States of America</title>
+
+<style>
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Trebuchet MS', Arial, sans-serif;
+  background-color: #fffff0;
+  color: #1a1a1a;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+  
+header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.4rem 0.75rem;
+  border-bottom: 2px solid #e2e5e9;
+  background-color: #fffff0;
+}
+
+.back-button {
+  border: 2px solid #444;
+  background: none;
+  border-radius: 6px;
+  padding: 0.25rem 0.5rem;
+  cursor: pointer;
+}
+
+.logo {
+  font-weight: 700;
+  font-size: 1.1rem;
+  white-space: nowrap;
+}
+
+.filters {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex: 1;
+  justify-content: center;
+}
+
+.filter-group {
+  display: inline-flex;
+}
+
+.filters select {
+  padding: 0.3rem 0.45rem;
+  border-radius: 6px;
+  border: 2px solid #ccc;
+  background-color: #fffff0;
+  font-size: 0.85rem;
+}
+
+.filters select:focus {
+  outline: 3px solid #005fcc;
+  outline-offset: 2px;
+}
+
+nav[aria-label="Breadcrumb"] {
+  background-color: #eef1f5;
+  padding: 0.4rem 0.75rem;
+  font-size: 0.8rem;
+}
+
+.breadcrumb {
+  display: flex;
+  gap: 0.25rem;
+  flex-wrap: wrap;
+  color: #555;
+}
+
+main {
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  gap: 1rem;
+  padding: 1rem;
+  height: calc(100vh - 110px);
+}
+
+@media (max-width: 900px) {
+  main {
+    grid-template-columns: 1fr;
+    height: auto;
+  }
+
+  .filters {
+    flex-wrap: wrap;
+  }
+}
+
+.map-area {
+  background-color: #ffffff;
+  border-radius: 12px;
+  border: 2px solid #e2e5e9;
+  padding: 0.75rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.map-area h1 {
+    font-size: 1rem;
+    margin: 0 0 0.5rem 0;
+}
+
+.map-placeholder {
+  flex: 1;
+  background-color: #dde3ea;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+}
+
+aside {
+  background-color: #ffffff;
+  border-radius: 12px;
+  border: 2px solid #e2e5e9;
+  padding: 0.75rem;
+  overflow-y: auto;
+}
+
+aside h2 {
+  margin-top: 0;
+  font-size: 1rem;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <button class="back-button" aria-label="Go back">←</button>
+
+  <section class="filters" aria-label="Election filters">
+
+  <div class="filter-group">
+    <label for="year" class="visually-hidden">Year</label>
+    <select id="year">
+      <option value="">Year</option>
+      <option value="2025">2025</option>
+      <option value="2024">2024</option>
+      <option value="2023">2023</option>
+      <option value="2022">2022</option>
+      <option value="2021">2021</option>
+      <option value="2020">2020</option>
+      <option value="2019">2019</option>
+      <option value="2018">2018</option>
+      <option value="2017">2017</option>
+      <option value="2016">2016</option>
+      <option value="2015">2015</option>
+      <option value="2014">2014</option>
+      <option value="2013">2013</option>
+      <option value="2012">2012</option>
+      <option value="2011">2011</option>
+      <option value="2010">2010</option>
+      <option value="2009">2009</option>
+      <option value="2008">2008</option>
+      <option value="2007">2007</option>
+      <option value="2006">2006</option>
+      <option value="2005">2005</option>
+      <option value="2004">2004</option>
+      <option value="2003">2003</option>
+      <option value="2002">2002</option>
+      <option value="2001">2001</option>
+      <option value="2000">2000</option>
+    </select>
+  </div>
+
+  <div class="filter-group">
+    <label for="region" class="visually-hidden">Region</label>
+    <select id="region">
+      <option value="">Region</option>
+      <option value="unitedstates">United States</option>
+      <option value="indiana">Indiana</option>
+      <option value="ohio">Ohio</option>
+      <option value="michigan">Michigan</option>
+    </select>
+  </div>
+
+  <div class="filter-group">
+    <label for="type" class="visually-hidden">Election Type</label>
+    <select id="type">
+      <option value="">Election</option>
+      <option value="presidential">Presidential</option>
+      <option value="primaries">Primaries</option>
+      <option value="house">House</option>
+      <option value="senate">Senate</option>
+      <option value="governor">Governor</option>
+      <option value="ballot">Ballot Measures</option>
+    </select>
+  </div>
+
+  <div class="filter-group">
+    <label for="dataset" class="visually-hidden">Dataset</label>
+    <select id="dataset">
+      <option value="">Dataset</option>
+      <option value="margin">Vote Margin</option>
+      <option value="swing">Swing</option>
+    </select>
+  </div>
+
+  <div class="filter-group">
+    <button onclick="searchPage()">Search</button>
+  </div>
+
+</section>
+
+  <div class="logo">Plexus</div>
+</header>
+
+<nav aria-label="Breadcrumb">
+  <div class="breadcrumb">
+    <span>Home</span> › <span>United States</span> › <span>Elections</span>
+  </div>
+</nav>
+
+<main>
+
+  <section class="map-area">
+    <h1>United States</h1>
+
+    <div class="map-container" role="region" aria-label="United States 2024 Election navigation">
+
+      <img
+        src="united-states-2024-pres.png"
+        usemap="#us-pres-2024-map"
+        alt="Map of US with each State colored according to Voter Margin"
+        class="us-pres-2024-image"
+      />
+
+      <map name="us-pres-2024-map">
+
+        <area
+          shape="poly"
+          coords="622,215,633,214,664,210,671,275,663,278,660,285,655,290,653,295,647,292,643,299,639,295,634,300,629,296,619,299,627,281,624,271"
+          href="indiana-2024-presidential-margin.html"
+          alt="2024 Indiana Presidential Election Results"
+          aria-label="Indiana"
+          tabindex="0"
+        >
+
+      </map>
+
+    </div>
+  </section>
+
+  <aside aria-live="polite">
+    <h2>Region Information</h2>
+    <p>Select a region on the map to view numeric election data.</p>
+  </aside>
+
+</main>
+
+<script>
+function searchPage() {
+  const year = document.getElementById("year").value;
+  const region = document.getElementById("region").value;
+  const type = document.getElementById("type").value;
+  const dataset = document.getElementById("dataset").value;
+
+  // Require at least region + year + type
+  if (!year || !region || !type) {
+    alert("Please select Year, Region, and Election Type.");
+    return;
+  }
+
+  const url = `${region}-${year}-${type}${dataset ? "-" + dataset : ""}.html`;
+
+  window.location.href = url;
+}
+</script>
+
+</body>
+</html>
