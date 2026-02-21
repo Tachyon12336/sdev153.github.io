@@ -193,11 +193,11 @@ area {
 <aside>
   <h2>County Results</h2>
 
-  <section id="lake-county">
-    <h3>Lake County</h3>
-    <p><strong>Democratic:</strong> 52%</p>
-    <p><strong>Republican:</strong> 46%</p>
-    <p><strong>Margin:</strong> D+6</p>
+  <section id="lake-county" hidden>
+    <h2>Lake County</h2>
+    <p><strong>Democratic:</strong> 52.1 - 109,086</p>
+    <p><strong>Republican:</strong> 46.5 - 97,270</p>
+    <p><strong>Margin:</strong> D - 5.6</p>
   </section>
 
 </aside>
@@ -214,6 +214,11 @@ function searchPage() {
   const url = `${region}-${year}-${type}-${dataset}.html`;
   window.location.href = url;
 }
+</script>
+
+<script>
+  onclick="document.getElementById('lakeCountyInfo').hidden = false;">
+  onclick="document.getElementByID('porterCountyInfo').hidden = false;">
 </script>
 
 </body>
