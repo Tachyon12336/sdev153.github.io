@@ -1,1 +1,240 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Plexus | World Elections</title>
+
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Trebuchet MS', Arial, sans-serif;
+      background-color: #fffff0;
+      color: #1a1a1a;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    a:focus {
+      outline: 3px solid #005fcc;
+      outline-offset: 2px;
+    }
+    
+    header {
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.4rem 0.75rem;
+      border-bottom: 2px solid #e2e5e9;
+      background-color: #fffff0;
+    }
+
+    .back-button {
+      border: 2px solid #444;
+      background: none;
+      border-radius: 6px;
+      padding: 0.25rem 0.5rem;
+      cursor: not-allowed;
+      font-size: 0.9rem;
+      opacity: 0.6;
+    }
+
+    .logo {
+      font-weight: 700;
+      font-size: 1rem;
+      text-align: center;
+      white-space: nowrap;
+    }
+
+    nav[aria-label="Breadcrumb"] {
+      background-color: #eef1f5;
+      padding: 0.4rem 0.75rem;
+      font-size: 0.8rem;
+    }
+
+    .breadcrumb {
+      display: flex;
+      gap: 0.25rem;
+      color: #555;
+    }
+
+    main {
+      display: grid;
+      grid-template-columns: 1fr 320px;
+      gap: 1rem;
+      padding: 1rem;
+      height: calc(100vh - 96px);
+    }
+
+    @media (max-width: 900px) {
+      main {
+        grid-template-columns: 1fr;
+        height: auto;
+      }
+    }
+
+    .map-area {
+      background-color: #ffffff;
+      border-radius: 12px;
+      border: 2px solid #e2e5e9;
+      padding: 0.75rem;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .map-area h1 {
+      font-size: 1rem;
+      margin: 0 0 0.5rem 0;
+    }
+
+    .map-container {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #dde3ea;
+      border-radius: 10px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .world-image {
+      width: 100%;
+      height: auto;
+      max-height: 100%;
+      object-fit: contain;
+      display: block;
+    }
+
+    aside {
+      background-color: #ffffff;
+      border-radius: 12px;
+      border: 2px solid #e2e5e9;
+      padding: 0.75rem;
+      overflow-y: auto;
+    }
+
+    aside h2 {
+      margin-top: 0;
+      font-size: 1rem;
+    }
+
+    .visually-hidden {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+  </style>
+</head>
+
+<script>
+function resizeImageMap() {
+  const img = document.querySelector('img[usemap]');
+  const map = document.querySelector('map');
+  const areas = map.querySelectorAll('area');
+
+  const originalWidth = img.naturalWidth;
+  const originalHeight = img.naturalHeight;
+
+  const displayedWidth = img.clientWidth;
+  const displayedHeight = img.clientHeight;
+
+  const widthRatio = displayedWidth / originalWidth;
+  const heightRatio = displayedHeight / originalHeight;
+
+  areas.forEach(area => {
+    if (!area.dataset.originalCoords) {
+      area.dataset.originalCoords = area.coords;
+    }
+
+    const coords = area.dataset.originalCoords.split(',').map(Number);
+
+    const scaledCoords = coords.map((coord, index) =>
+      index % 2 === 0
+        ? Math.round(coord * widthRatio)
+        : Math.round(coord * heightRatio)
+    );
+
+    area.coords = scaledCoords.join(',');
+  });
+}
+
+window.addEventListener('load', resizeImageMap);
+window.addEventListener('resize', resizeImageMap);
+</script>
+
+<body>
+
+  <header>
+    <button class="back-button" aria-label="Go back" disabled>←</button>
+    <div class="logo">Plexus</div>
+    <div aria-hidden="true"></div>
+  </header>
+
+  <nav aria-label="Breadcrumb">
+    <div class="breadcrumb">
+      <span>Home</span>
+    </div>
+  </nav>
+
+  <main>
+
+    <section class="map-area">
+      <h1>World</h1>
+
+      <div class="map-container" role="region" aria-label="World map navigation">
+
+        <img
+          src="world-new.png"
+          usemap="#world-map"
+          alt="World map divided into selectable continents"
+          class="world-image"
+        />
+
+        <map name="world-map">
+
+          <area
+            shape="poly"
+            coords="373,186,513,186,536,193,562,205,559,230,641,198,645,216,620,235,589,256,581,276,543,302,543,339,529,309,502,306,498,316,476,311,451,334,430,311,421,318,408,299,389,302,366,292,354,292,343,281,336,244"
+            href="united-states.html"
+            alt="United States"
+            aria-label="United States"
+            tabindex="0"
+          >
+
+        </map>
+
+      </div>
+    </section>
+
+    <aside aria-live="polite">
+      <h2>Welcome</h2>
+      <p>
+        Select a continent on the map to explore election data by country,
+        region, and sub-national divisions.
+      </p>
+      <p>
+        This site uses hierarchical navigation and geographic context to
+        present election data clearly and accessibly.
+      </p>
+    </aside>
+
+  </main>
+
+</body>
+</html>
