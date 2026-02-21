@@ -185,6 +185,7 @@ area {
         href="#lake-county"
         coords="131,51,153,67,175,68,176,143,163,152,149,161,142,154,137,158,131,157,131,75"
         shape="poly">
+        onclick="document.getElementById('lake-county').hidden = false;">
     </map>
 
   </div>
@@ -214,11 +215,6 @@ function searchPage() {
   const url = `${region}-${year}-${type}-${dataset}.html`;
   window.location.href = url;
 }
-</script>
-
-<script>
-  onclick="document.getElementById('lakeCountyInfo').hidden = false;">
-  onclick="document.getElementByID('porterCountyInfo').hidden = false;">
 </script>
 
 </body>
