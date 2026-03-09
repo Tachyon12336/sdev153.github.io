@@ -4,124 +4,19 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Plexus | Indiana</title>
-
-<style>
-*, *::before, *::after {
-  box-sizing: border-box;
-}
-
-html {
-  scroll-behavior: smooth;
-}
-
-body {
-  margin: 0;
-  font-family: 'Trebuchet MS', Arial, sans-serif;
-  background-color: #fffff0;
-  color: #1a1a1a;
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-header {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  padding: 0.4rem 0.75rem;
-  border-bottom: 2px solid #e2e5e9;
-  background-color: #fffff0;
-}
-
-.back-button {
-  border: 2px solid #444;
-  background: none;
-  border-radius: 6px;
-  padding: 0.25rem 0.5rem;
-  cursor: pointer;
-}
-
-.logo {
-  font-weight: 700;
-  font-size: 1.1rem;
-  white-space: nowrap;
-}
-
-.filters {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  flex: 1;
-  justify-content: center;
-}
-
-.filter-group {
-  display: inline-flex;
-}
-
-.filters select,
-.filters button {
-  padding: 0.3rem 0.45rem;
-  border-radius: 6px;
-  border: 2px solid #ccc;
-  background-color: #fffff0;
-  font-size: 0.85rem;
-}
-
-.filters button {
-  cursor: pointer;
-}
-
-nav {
-  background-color: #eef1f5;
-  padding: 0.4rem 0.75rem;
-  font-size: 0.8rem;
-}
-
-main {
-  display: grid;
-  grid-template-columns: 1fr 300px;
-  gap: 1rem;
-  padding: 1rem;
-  height: calc(100vh - 110px);
-}
-
-.map-area {
-  background-color: #ffffff;
-  border-radius: 12px;
-  border: 2px solid #e2e5e9;
-  padding: 0.75rem;
-  display: flex;
-  flex-direction: column;
-}
-
-.map-container {
-  flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.map-container img {
-  max-width: 100%;
-  height: auto;
-}
-
-aside {
-  background-color: #ffffff;
-  border-radius: 12px;
-  border: 2px solid #e2e5e9;
-  padding: 0.75rem;
-  overflow-y: auto;
-}
-
-area {
-  cursor: pointer;
-}
-</style>
+<link rel="stylesheet" href="styles.css">
+<meta name="description" content="Interactive election maps and geographic voting data visualization.">
+<meta name="keywords" content="election maps, voting data, united states elections, geography">
+<meta name="author" content="David Spaniol">
 </head>
+
+<script src="https://unpkg.com/image-map-resizer/js/imageMapResizer.min.js"></script>
+
+<script>
+window.onload = function() {
+  imageMapResize();
+};
+</script>
 
 <body>
 
@@ -179,21 +74,98 @@ area {
     >
 
     <map name="indiana-map">
-      <area 
-        alt="Lake County"
-        title="Lake County"
-        href="#lake-county"
-        coords="131,51,153,67,175,68,176,143,163,152,149,161,142,154,137,158,131,157,131,75"
-        shape="poly"
-        onclick="document.getElementById('lake-county').hidden = false;">
-
-      <area 
-        alt="Porter County"
-        title="Porter County"
-        href="#porter-county"
-        coords="177,68,195,63,219,51,218,146,208,144,194,136,188,134,178,139"
-        shape="poly"
-        onclick="document.getElementById('porter-county').hidden = false;">
+      <area alt="Lake County" title="Lake County" href="#lake-county" coords="132,52,142,58,147,64,159,69,176,68,176,144,165,152,159,155,153,156,150,161,143,155,132,158" shape="poly" onclick="showCounty('lake-county')">
+      <area alt="Porter County" title="Porter County" href="#porter-county" coords="177,68,190,65,206,59,219,52,219,149,204,141,189,134,177,141" shape="poly" onclick="showCounty('porter-county')">
+      <area alt="Newton County" title="Newton County" href="#newton-county" coords="130,160,141,156,149,162,155,157,166,151,167,207,169,209,168,245,129,245" shape="poly" onclick="showCounty('newton-county')">
+      <area alt="Jasper County" title="Jasper County" href="#jasper-county" coords="168,150,177,145,180,138,190,135,204,142,213,149,218,147,220,208,210,209,210,223,193,223,193,244,168,243,168,207,167,207" shape="poly" onclick="showCounty('jasper-county')">
+      <area alt="LaPorte County" title="LaPorte County" href="#laporte-county" coords="219,53,235,41,280,42,279,65,285,65,285,80,283,88,279,90,278,107,261,106,252,114,246,130,239,137,227,138,220,143" shape="poly" onclick="showCounty('laporte-county')">
+      <area alt="Starke County" title="Starke County" href="#starke-county" coords="218,146,226,139,238,136,248,127,254,111,263,106,287,106,288,158,219,158" shape="poly" onclick="showCounty('starke-county')">
+      <area alt="Pulaski County" title="Pulaski County" href="#pulaski-county" coords="219,158,288,157,288,209,220,209" shape="poly" onclick="showCounty('pulaski-county')">
+      <area alt="St Joseph County" title="St Joseph County" href="#stjoseph-county" coords="279,43,347,42,349,97,288,99,288,107,279,107,278,90,283,91,282,80,286,80,286,64,279,64" shape="poly" onclick="showCounty('stjoseph-county')">
+      <area alt="Marshall County" title="Marshall County" href="#marshall-county" coords="288,98,347,96,349,158,287,157" shape="poly" onclick="showCounty('marshall-county')">
+      <area alt="Fulton County" title="Fulton County" href="#fulton-county" coords="288,158,347,157,347,174,354,175,354,182,365,183,366,191,333,192,332,210,288,209" shape="poly" onclick="showCounty('fulton-county')">
+      <area alt="Elkhart County" title="Elkhart County" href="#elkhart-county" coords="347,41,407,41,408,105,348,106" shape="poly" onclick="showCounty('elkhart-county')">
+      <area alt="Kosciusko County" title="Kosciusko County" href="#kosciusko-county" coords="349,106,408,105,409,156,404,156,405,183,366,183,355,183,353,175,345,175,345,158,350,158" shape="poly" onclick="showCounty('kosciusko-county')">
+      <area alt="LaGrange County" title="LaGrange County" href="#lagrange-county" coords="407,41,476,41,478,87,408,88" shape="poly" onclick="showCounty('lagrange-county')">
+      <area alt="Noble County" title="Noble County" href="#noble-county" coords="409,88,477,86,478,138,426,140,425,132,409,132" shape="poly" onclick="showCounty('noble-county')">
+      <area alt="Whitley County" title="Whitley County" href="#whitley-county" coords="409,132,427,132,427,139,459,138,460,155,456,156,456,190,405,190,404,156,409,156" shape="poly" onclick="showCounty('whitley-county')">
+      <area alt="Steuben County" title="Steuben County" href="#steuben-county" coords="475,41,531,40,532,85,476,87" shape="poly" onclick="showCounty('steuben-county')">
+      <area alt="DeKalb County" title="DeKalb County" href="#dekalb-county" coords="477,87,533,86,534,137,477,139" shape="poly" onclick="showCounty('dekalb-county')">
+      <area alt="Allen County" title="Allen County" href="#allen-county" coords="459,139,534,136,536,206,456,208,457,155,461,155" shape="poly" onclick="showCounty('allen-county')">
+      <area alt="Benton County" title="Benton County" href="#benton-county" coords="129,244,193,244,193,295,129,295" shape="poly" onclick="showCounty('benton-county')">
+      <area alt="White County" title="White County" href="#white-county" coords="211,209,270,209,270,244,245,243,242,259,242,278,194,278,193,224,211,224" shape="poly" onclick="showCounty('white-county')">
+      <area alt="Carroll County" title="Carroll County" href="#carroll-county" coords="247,242,278,242,279,252,300,252,301,303,253,304,252,278,241,276,242,258" shape="poly" onclick="showCounty('carroll-county')">
+      <area alt="Cass County" title="Cass County" href="#cass-county" coords="270,210,332,210,332,278,302,279,302,252,281,253,279,243,270,244" shape="poly" onclick="showCounty('cass-county')">
+      <area alt="Miami County" title="Miami County" href="#miami-county" coords="332,192,365,194,365,260,378,261,378,279,333,278" shape="poly" onclick="showCounty('miami-county')">
+      <area alt="Howard County" title="Howard County" href="#howard-county" coords="301,279,378,278,378,308,322,310,320,316,312,313,311,305,301,304" shape="poly" onclick="showCounty('howard-county')">
+      <area alt="Wabash County" title="Wabash County" href="#wabash-county" coords="366,184,404,182,405,191,411,192,411,259,366,259" shape="poly" onclick="showCounty('wabash-county')">
+      <area alt="Huntington County" title="Huntington County" href="#huntington-county" coords="411,191,456,190,457,258,410,260" shape="poly" onclick="showCounty('huntington-county')">
+      <area alt="Grant County" title="Grant County" href="#grant-county" coords="379,259,440,258,441,313,378,315" shape="poly" onclick="showCounty('grant-county')">
+      <area alt="Wells County" title="Wells County" href="#wells-county" coords="457,207,496,207,497,276,440,276,440,259,458,258" shape="poly" onclick="showCounty('wells-county')">
+      <area alt="Adams County" title="Adams County" href="#adams-county" coords="496,208,536,206,537,274,497,275" shape="poly" onclick="showCounty('adams-county')">
+      <area alt="Blackford County" title="Blackford County" href="#blackford-county" coords="440,276,480,275,477,313,441,313" shape="poly" onclick="showCounty('blackford-county')">
+      <area alt="Jay County" title="Jay County" href="#jay-county" coords="479,276,536,274,537,324,476,328,474,314,478,304,477,293,481,293" shape="poly" onclick="showCounty('jay-county')">
+      <area alt="Warren County" title="Warren County" href="#warren-county" coords="130,293,192,293,192,318,185,322,171,326,163,340,156,346,144,350,142,355,146,358,145,364,134,361,131,358,128,359" shape="poly" onclick="showCounty('warren-county')">
+      <area alt="Fountain County" title="Fountain County" href="#fountain-county" coords="194,317,192,399,141,398,143,388,141,381,145,373,143,367,147,359,141,353,149,349,158,346,164,335,175,326" shape="poly" onclick="showCounty('fountain-county')">
+      <area alt="Vermillion County" title="Vermillion County" href="#vermillion-county" coords="128,359,132,358,131,362,145,363,141,396,145,404,153,414,148,421,148,467,126,466" shape="poly" onclick="showCounty('vermillion-county')">
+      <area alt="Parke County" title="Parke County" href="#parke-county" coords="142,399,194,400,193,415,205,416,204,467,148,465,149,445,151,428,147,422,154,414" shape="poly" onclick="showCounty('parke-county')">
+      <area alt="Tippecanoe County" title="Tippecanoe County" href="#tippecanoe-county" coords="195,278,253,279,253,346,193,346" shape="poly" onclick="showCounty('tippecanoe-county')">
+      <area alt="Montgomery County" title="Montgomery County" href="#montgomery-county" coords="193,347,252,347,252,416,192,415" shape="poly" onclick="showCounty('montgomery-county')">
+      <area alt="Putnam County" title="Putnam County" href="#putnam-county" coords="206,415,253,415,253,462,262,463,259,470,261,476,253,484,253,492,204,493" shape="poly" onclick="showCounty('putnam-county')">
+      <area alt="Clinton County" title="Clinton County" href="#clinton-county" coords="255,304,311,304,311,316,320,317,321,354,254,354" shape="poly" onclick="showCounty('clinton-county')">
+      <area alt="Boone County" title="Boone County" href="#boone-county" coords="254,354,322,353,322,403,254,404" shape="poly" onclick="showCounty('boone-county')">
+      <area alt="Hendricks County" title="Hendricks County" href="#hendricks-county" coords="253,405,308,404,309,461,287,461,287,468,261,467,262,461,254,461" shape="poly" onclick="showCounty('hendricks-county')">
+      <area alt="Tipton County" title="Tipton County" href="#tipton-county" coords="323,309,377,307,378,344,321,346" shape="poly" onclick="showCounty('tipton-county')">
+      <area alt="Hamilton County" title="Hamilton County" href="#hamilton-county" coords="321,347,378,346,380,402,323,402" shape="poly" onclick="showCounty('hamilton-county')">
+      <area alt="Marion County" title="Marion County" href="#marion-county" coords="308,404,369,404,369,415,365,415,367,459,309,460" shape="poly" onclick="showCounty('marion-county')">
+<area alt="Madison County" title="Madison County" href="#madison-county" coords="" shape="poly" onclick="showCounty('madison-county')">
+<area alt="Hancock County" title="Hancock County" href="#hancock-county" coords="" shape="poly" onclick="showCounty('hancock-county')">
+<area alt="Delaware County" title="Delaware County" href="#delaware-county" coords="" shape="poly" onclick="showCounty('delaware-county')">
+<area alt="Henry County" title="Henry County" href="#henry-county" coords="" shape="poly" onclick="showCounty('henry-county')">
+<area alt="Randolph County" title="Randolph County" href="#randolph-county" coords="" shape="poly" onclick="showCounty('randolph-county')">
+<area alt="Wayne County" title="Wayne County" href="#wayne-county" coords="" shape="poly" onclick="showCounty('wayne-county')">
+<area alt="Vigo County" title="Vigo County" href="#vigo-county" coords="" shape="poly" onclick="showCounty('vigo-county')">
+<area alt="Sullivan County" title="Sullivan County" href="#sullivan-county" coords="" shape="poly" onclick="showCounty('sullivan-county')">
+<area alt="Clay County" title="Clay County" href="#clay-county" coords="" shape="poly" onclick="showCounty('clay-county')">
+<area alt="Owen County" title="Owen County" href="#owen-county" coords="" shape="poly" onclick="showCounty('owen-county')">
+<area alt="Greene County" title="Greene County" href="#greene-county" coords="" shape="poly" onclick="showCounty('greene-county')">
+<area alt="Morgan County" title="Morgan County" href="#morgan-county" coords="" shape="poly" onclick="showCounty('morgan-county')">
+<area alt="Monroe County" title="Monroe County" href="#monroe-county" coords="" shape="poly" onclick="showCounty('monroe-county')">
+<area alt="Johnson County" title="Johnson County" href="#johnson-county" coords="" shape="poly" onclick="showCounty('johnson-county')">
+<area alt="Brown County" title="Brown County" href="#brown-county" coords="" shape="poly" onclick="showCounty('brown-county')">
+<area alt="Shelby County" title="Shelby County" href="#shelby-county" coords="" shape="poly" onclick="showCounty('shelby-county')">
+<area alt="Bartholomew County" title="Bartholomew County" href="#bartholomew-county" coords="" shape="poly" onclick="showCounty('bartholomew-county')">
+<area alt="Rush County" title="Rush County" href="#rush-county" coords="" shape="poly" onclick="showCounty('rush-county')">
+<area alt="Decatur County" title="Decatur County" href="#decatur-county" coords="" shape="poly" onclick="showCounty('decatur-county')">
+<area alt="Fayette County" title="Fayette County" href="#fayette-county" coords="" shape="poly" onclick="showCounty('fayette-county')">
+<area alt="Union County" title="Union County" href="#union-county" coords="" shape="poly" onclick="showCounty('union-county')">
+<area alt="Franklin County" title="Franklin County" href="#franklin-county" coords="" shape="poly" onclick="showCounty('franklin-county')">
+<area alt="Knox County" title="Knox County" href="#knox-county" coords="" shape="poly" onclick="showCounty('knox-county')">
+<area alt="Daviess County" title="Daviess County" href="#daviess-county" coords="" shape="poly" onclick="showCounty('daviess-county')">
+<area alt="Martin County" title="Martin County" href="#martin-county" coords="" shape="poly" onclick="showCounty('martin-county')">
+<area alt="Lawrence County" title="Lawrence County" href="#lawrence-county" coords="" shape="poly" onclick="showCounty('lawrence-county')">
+<area alt="Jackson County" title="Jackson County" href="#jackson-county" coords="" shape="poly" onclick="showCounty('jackson-county')">
+<area alt="Jennings County" title="Jennings County" href="#jennings-county" coords="" shape="poly" onclick="showCounty('jennings-county')">
+<area alt="Ripley County" title="Ripley County" href="#ripley-county" coords="" shape="poly" onclick="showCounty('ripley-county')">
+<area alt="Dearborn County" title="Dearborn County" href="#dearborn-county" coords="" shape="poly" onclick="showCounty('dearborn-county')">
+<area alt="Gibson County" title="Gibson County" href="#gibson-county" coords="" shape="poly" onclick="showCounty('gibson-county')">
+<area alt="Pike County" title="Pike County" href="#pike-county" coords="" shape="poly" onclick="showCounty('pike-county')">
+<area alt="Dubois County" title="Dubois County" href="#dubois-county" coords="" shape="poly" onclick="showCounty('dubois-county')">
+<area alt="Orange County" title="Orange County" href="#orange-county" coords="" shape="poly" onclick="showCounty('orange-county')">
+<area alt="Washington County" title="Washington County" href="#washington-county" coords="" shape="poly" onclick="showCounty('washington-county')">
+<area alt="Scott County" title="Scott County" href="#scott-county" coords="" shape="poly" onclick="showCounty('scott-county')">
+<area alt="Posey County" title="Posey County" href="#posey-county" coords="" shape="poly" onclick="showCounty('posey-county')">
+<area alt="Vanderburgh County" title="Vanderburgh County" href="#vanderburgh-county" coords="" shape="poly" onclick="showCounty('vanderburgh-county')">
+<area alt="Warrick County" title="Warrick County" href="#warrick-county" coords="" shape="poly" onclick="showCounty('warrick-county')">
+<area alt="Spencer County" title="Spencer County" href="#spencer-county" coords="" shape="poly" onclick="showCounty('spencer-county')">
+<area alt="Perry County" title="Perry County" href="#perry-county" coords="" shape="poly" onclick="showCounty('perry-county')">
+<area alt="Crawford County" title="Crawford County" href="#crawford-county" coords="" shape="poly" onclick="showCounty('crawford-county')">
+<area alt="Harrison County" title="Harrison County" href="#harrison-county" coords="" shape="poly" onclick="showCounty('harrison-county')">
+<area alt="Floyd County" title="Floyd County" href="#floyd-county" coords="" shape="poly" onclick="showCounty('floyd-county')">
+<area alt="Clark County" title="Clark County" href="#clark-county" coords="" shape="poly" onclick="showCounty('clark-county')">
+<area alt="Jefferson County" title="Jefferson County" href="#jefferson-county" coords="" shape="poly" onclick="showCounty('jefferson-county')">
+<area alt="Ohio County" title="Ohio County" href="#ohio-county" coords="" shape="poly" onclick="showCounty('ohio-county')">
+<area alt="Switzerland County" title="Switzerland County" href="#switzerland-county" coords="" shape="poly" onclick="showCounty('switzerland-county')">
     </map>
 
   </div>
@@ -202,25 +174,696 @@ area {
 <aside>
   <h2>County Results</h2>
 
-  <section id="lake-county" hidden>
+  <section id="lake-county" class="county-result" hidden>
     <h2>Lake County</h2>
     <p><strong>Democratic:</strong> 52.1 - 109,086</p>
     <p>Republican: 46.5 - 97,270</p>
     <p>Margin: D - 5.6</p>
   </section>
 
-  <section id="porter-county" hidden>
+  <section id="porter-county" class="county-result" hidden>
     <h2>Porter County</h2>
     <p><strong>Republican:</strong> 54.3 - 46,109</p>
     <p>Democratic: 43.8 - 37,213</p>
     <p>Margin: R - 10.5</p>
   </section>
 
+  <section id="newton-county" class="county-result" hidden>
+<h2>Newton County</h2>
+<p><strong>Republican:</strong> 77.7 - 5,131</p>
+<p>Democratic: 20.8 - 1,370</p>
+<p>Margin: R - 56.9</p>
+</section>
+
+<section id="jasper-county" class="county-result" hidden>
+<h2>Jasper County</h2>
+<p><strong>Republican:</strong> 76.4 - 12,082</p>
+<p>Democratic: 22.1 - 3,489</p>
+<p>Margin: R - 54.3</p>
+</section>
+
+<section id="laporte-county" class="county-result" hidden>
+<h2>LaPorte County</h2>
+<p><strong>Republican:</strong> 56.1 - 26,726</p>
+<p>Democratic: 42.2 - 20,077</p>
+<p>Margin: R - 13.9</p>
+</section>
+
+<section id="starke-county" class="county-result" hidden>
+<h2>Starke County</h2>
+<p><strong>Republican:</strong> 75.3 - 7,889</p>
+<p>Democratic: 23.3 - 2,436</p>
+<p>Margin: R - 52.0</p>
+</section>
+
+<section id="pulaski-county" class="county-result" hidden>
+<h2>Pulaski County</h2>
+<p><strong>Republican:</strong> 75.9 - 4,372</p>
+<p>Democratic: 22.2 - 1,280</p>
+<p>Margin: R - 53.7</p>
+</section>
+
+<section id="stjoseph-county" class="county-result" hidden>
+<h2>St Joseph County</h2>
+<p><strong>Democratic:</strong> 50.0 - 55,215</p>
+<p>Republican: 48.5 - 53,585</p>
+<p>Margin: D - 1.5</p>
+</section>
+
+<section id="marshall-county" class="county-result" hidden>
+<h2>Marshall County</h2>
+<p><strong>Republican:</strong> 70.8 - 13,837</p>
+<p>Democratic: 27.4 - 5,356</p>
+<p>Margin: R - 43.4</p>
+</section>
+
+<section id="fulton-county" class="county-result" hidden>
+<h2>Fulton County</h2>
+<p><strong>Republican:</strong> 74.9 - 6,633</p>
+<p>Democratic: 23.7 - 2,097</p>
+<p>Margin: R - 51.2</p>
+</section>
+
+<section id="elkhart-county" class="county-result" hidden>
+<h2>Elkhart County</h2>
+<p><strong>Republican:</strong> 65.5 - 45,652</p>
+<p>Democratic: 33.1 - 23,082</p>
+<p>Margin: R - 32.4</p>
+</section>
+
+<section id="kosciusko-county" class="county-result" hidden>
+<h2>Kosciusko County</h2>
+<p><strong>Republican:</strong> 75.2 - 26,213</p>
+<p>Democratic: 22.9 - 7,995</p>
+<p>Margin: R - 52.3</p>
+</section>
+
+<section id="lagrange-county" class="county-result" hidden>
+<h2>LaGrange County</h2>
+<p><strong>Republican:</strong> 77.6 - 8,073</p>
+<p>Democratic: 20.8 - 2,162</p>
+<p>Margin: R - 56.8</p>
+</section>
+
+<section id="noble-county" class="county-result" hidden>
+<h2>Noble County</h2>
+<p><strong>Republican:</strong> 74.9 - 14,209</p>
+<p>Democratic: 23.5 - 4,462</p>
+<p>Margin: R - 51.4</p>
+</section>
+
+<section id="whitley-county" class="county-result" hidden>
+<h2>Whitley County</h2>
+<p><strong>Republican:</strong> 74.0 - 13,122</p>
+<p>Democratic: 24.1 - 4,275</p>
+<p>Margin: R - 49.9</p>
+</section>
+
+<section id="steuben-county" class="county-result" hidden>
+<h2>Steuben County</h2>
+<p><strong>Republican:</strong> 70.2 - 11,487</p>
+<p>Democratic: 28.1 - 4,598</p>
+<p>Margin: R - 42.1</p>
+</section>
+
+<section id="dekalb-county" class="county-result" hidden>
+<h2>DeKalb County</h2>
+<p><strong>Republican:</strong> 72.7 - 14,377</p>
+<p>Democratic: 25.6 - 5,064</p>
+<p>Margin: R - 47.1</p>
+</section>
+
+<section id="allen-county" class="county-result" hidden>
+<h2>Allen County</h2>
+<p><strong>Republican:</strong> 55.4 - 90,283</p>
+<p>Democratic: 42.9 - 69,960</p>
+<p>Margin: R - 12.5</p>
+</section>
+
+<section id="benton-county" class="county-result" hidden>
+<h2>Benton County</h2>
+<p><strong>Republican:</strong> 72.7 - 2,873</p>
+<p>Democratic: 25.5 - 1,010</p>
+<p>Margin: R - 47.2</p>
+</section>
+
+<section id="white-county" class="county-result" hidden>
+<h2>White County</h2>
+<p><strong>Republican:</strong> 71.4 - 7,969</p>
+<p>Democratic: 26.4 - 2,945</p>
+<p>Margin: R - 45.0</p>
+</section>
+
+<section id="carroll-county" class="county-result" hidden>
+<h2>Carroll County</h2>
+<p><strong>Republican:</strong> 75.2 - 6,902</p>
+<p>Democratic: 23.1 - 2,120</p>
+<p>Margin: R - 52.1</p>
+</section>
+
+<section id="cass-county" class="county-result" hidden>
+<h2>Cass County</h2>
+<p><strong>Republican:</strong> 72.4 - 10,285</p>
+<p>Democratic: 26.2 - 3,722</p>
+<p>Margin: R - 46.2</p>
+</section>
+
+<section id="miami-county" class="county-result" hidden>
+<h2>Miami County</h2>
+<p><strong>Republican:</strong> 76.3 - 10,670</p>
+<p>Democratic: 21.8 - 3,046</p>
+<p>Margin: R - 54.5</p>
+</section>
+
+<section id="howard-county" class="county-result" hidden>
+<h2>Howard County</h2>
+<p><strong>Republican:</strong> 66.7 - 25,871</p>
+<p>Democratic: 31.4 - 12,197</p>
+<p>Margin: R - 35.3</p>
+</section>
+
+<section id="wabash-county" class="county-result" hidden>
+<h2>Wabash County</h2>
+<p><strong>Republican:</strong> 74.7 - 10,425</p>
+<p>Democratic: 23.9 - 3,335</p>
+<p>Margin: R - 50.8</p>
+</section>
+
+<section id="huntington-county" class="county-result" hidden>
+<h2>Huntington County</h2>
+<p><strong>Republican:</strong> 73.3 - 12,990</p>
+<p>Democratic: 24.9 - 4,416</p>
+<p>Margin: R - 48.4</p>
+</section>
+
+<section id="grant-county" class="county-result" hidden>
+<h2>Grant County</h2>
+<p><strong>Republican:</strong> 70.0 - 17,580</p>
+<p>Democratic: 28.2 - 7,083</p>
+<p>Margin: R - 41.8</p>
+</section>
+
+<section id="wells-county" class="county-result" hidden>
+<h2>Wells County</h2>
+<p><strong>Republican:</strong> 78.1 - 11,006</p>
+<p>Democratic: 20.2 - 2,850</p>
+<p>Margin: R - 57.9</p>
+</section>
+
+<section id="adams-county" class="county-result" hidden>
+<h2>Adams County</h2>
+<p><strong>Republican:</strong> 75.4 - 10,528</p>
+<p>Democratic: 22.9 - 3,179</p>
+<p>Margin: R - 52.5</p>
+</section>
+
+<section id="blackford-county" class="county-result" hidden>
+<h2>Blackford County</h2>
+<p><strong>Republican:</strong> 74.2 - 3,811</p>
+<p>Democratic: 23.9 - 1,227</p>
+<p>Margin: R - 50.3</p>
+</section>
+
+<section id="jay-county" class="county-result" hidden>
+<h2>Jay County</h2>
+<p><strong>Republican:</strong> 76.7 - 6,217</p>
+<p>Democratic: 21.6 - 1,747</p>
+<p>Margin: R - 55.1</p>
+</section>
+
+<section id="warren-county" class="county-result" hidden>
+<h2>Warren County</h2>
+<p><strong>Republican:</strong> 77.8 - 3,402</p>
+<p>Democratic: 20.6 - 898</p>
+<p>Margin: R - 57.2</p>
+</section>
+
+<section id="fountain-county" class="county-result" hidden>
+<h2>Fountain County</h2>
+<p><strong>Republican:</strong> 79.1 - 6,311</p>
+<p>Democratic: 19.1 - 1,526</p>
+<p>Margin: R - 60.0</p>
+</section>
+
+<section id="vermillion-county" class="county-result" hidden>
+<h2>Vermillion County</h2>
+<p><strong>Republican:</strong> 71.3 - 5,174</p>
+<p>Democratic: 26.6 - 1,928</p>
+<p>Margin: R - 44.7</p>
+</section>
+
+<section id="parke-county" class="county-result" hidden>
+<h2>Parke County</h2>
+<p><strong>Republican:</strong> 77.5 - 5,158</p>
+<p>Democratic: 20.6 - 1,371</p>
+<p>Margin: R - 56.9</p>
+</section>
+
+<section id="tippecanoe-county" class="county-result" hidden>
+<h2>Tippecanoe County</h2>
+<p><strong>Republican:</strong> 49.1 - 32,783</p>
+<p>Democratic: 49.0 - 32,683</p>
+<p>Margin: R - 0.1</p>
+</section>
+
+<section id="montgomery-county" class="county-result" hidden>
+<h2>Montgomery County</h2>
+<p><strong>Republican:</strong> 73.2 - 12,122</p>
+<p>Democratic: 24.9 - 4,134</p>
+<p>Margin: R - 48.3</p>
+</section>
+
+<section id="putnam-county" class="county-result" hidden>
+<h2>Putnam County</h2>
+<p><strong>Republican:</strong> 75.1 - 12,566</p>
+<p>Democratic: 23.1 - 3,871</p>
+<p>Margin: R - 52.0</p>
+</section>
+
+<section id="clinton-county" class="county-result" hidden>
+<h2>Clinton County</h2>
+<p><strong>Republican:</strong> 73.2 - 9,108</p>
+<p>Democratic: 25.2 - 3,135</p>
+<p>Margin: R - 48.0</p>
+</section>
+
+<section id="boone-county" class="county-result" hidden>
+<h2>Boone County</h2>
+<p><strong>Republican:</strong> 57.0 - 22,840</p>
+<p>Democratic: 41.0 - 16,426</p>
+<p>Margin: R - 16.0</p>
+</section>
+
+<section id="hendricks-county" class="county-result" hidden>
+<h2>Hendricks County</h2>
+<p><strong>Republican:</strong> 59.9 - 49,783</p>
+<p>Democratic: 38.4 - 31,917</p>
+<p>Margin: R - 21.5</p>
+</section>
+
+<section id="tipton-county" class="county-result" hidden>
+<h2>Tipton County</h2>
+<p><strong>Republican:</strong> 74.5 - 5,946</p>
+<p>Democratic: 23.7 - 1,893</p>
+<p>Margin: R - 50.8</p>
+</section>
+
+<section id="hamilton-county" class="county-result" hidden>
+<h2>Hamilton County</h2>
+<p><strong>Republican:</strong> 52.1 - 102,318</p>
+<p>Democratic: 46.0 - 90,394</p>
+<p>Margin: R - 6.1</p>
+</section>
+
+<section id="marion-county" class="county-result" hidden>
+<h2>Marion County</h2>
+<p><strong>Democratic:</strong> 63.0 - 221,719</p>
+<p>Republican: 35.3 - 124,327</p>
+<p>Margin: D - 27.7</p>
+</section>
+
+<section id="madison-county" class="county-result" hidden>
+<h2>Madison County</h2>
+<p><strong>Republican:</strong> 62.5 - 34,837</p>
+<p>Democratic: 35.6 - 19,824</p>
+<p>Margin: R - 26.9</p>
+</section>
+
+<section id="hancock-county" class="county-result" hidden>
+<h2>Hancock County</h2>
+<p><strong>Republican:</strong> 65.9 - 29,288</p>
+<p>Democratic: 32.2 - 14,312</p>
+<p>Margin: R - 33.7</p>
+</section>
+
+<section id="delaware-county" class="county-result" hidden>
+<h2>Delaware County</h2>
+<p><strong>Republican:</strong> 57.0 - 26,067</p>
+<p>Democratic: 41.2 - 18,848</p>
+<p>Margin: R - 15.8</p>
+</section>
+
+<section id="henry-county" class="county-result" hidden>
+<h2>Henry County</h2>
+<p><strong>Republican:</strong> 73.0 - 15,033</p>
+<p>Democratic: 25.3 - 5,208</p>
+<p>Margin: R - 47.7</p>
+</section>
+
+<section id="randolph-county" class="county-result" hidden>
+<h2>Randolph County</h2>
+<p><strong>Republican:</strong> 75.9 - 8,008</p>
+<p>Democratic: 22.3 - 2,349</p>
+<p>Margin: R - 53.6</p>
+</section>
+
+<section id="wayne-county" class="county-result" hidden>
+<h2>Wayne County</h2>
+<p><strong>Republican:</strong> 65.4 - 17,526</p>
+<p>Democratic: 32.9 - 8,828</p>
+<p>Margin: R - 32.5</p>
+</section>
+
+<section id="vigo-county" class="county-result" hidden>
+<h2>Vigo County</h2>
+<p><strong>Republican:</strong> 58.1 - 23,738</p>
+<p>Democratic: 40.0 - 16,338</p>
+<p>Margin: R - 18.1</p>
+</section>
+
+<section id="sullivan-county" class="county-result" hidden>
+<h2>Sullivan County</h2>
+<p><strong>Republican:</strong> 75.5 - 6,639</p>
+<p>Democratic: 22.8 - 2,006</p>
+<p>Margin: R - 52.7</p>
+</section>
+
+<section id="clay-county" class="county-result" hidden>
+<h2>Clay County</h2>
+<p><strong>Republican:</strong> 77.6 - 9,354</p>
+<p>Democratic: 20.7 - 2,495</p>
+<p>Margin: R - 56.9</p>
+</section>
+
+<section id="owen-county" class="county-result" hidden>
+<h2>Owen County</h2>
+<p><strong>Republican:</strong> 74.5 - 7,360</p>
+<p>Democratic: 23.8 - 2,354</p>
+<p>Margin: R - 50.7</p>
+</section>
+
+<section id="greene-county" class="county-result" hidden>
+<h2>Greene County</h2>
+<p><strong>Republican:</strong> 76.1 - 11,132</p>
+<p>Democratic: 22.4 - 3,270</p>
+<p>Margin: R - 53.7</p>
+</section>
+
+<section id="morgan-county" class="county-result" hidden>
+<h2>Morgan County</h2>
+<p><strong>Republican:</strong> 76.3 - 26,965</p>
+<p>Democratic: 22.0 - 7,765</p>
+<p>Margin: R - 54.3</p>
+</section>
+
+<section id="monroe-county" class="county-result" hidden>
+<h2>Monroe County</h2>
+<p><strong>Democratic:</strong> 63.0 - 37,213</p>
+<p>Republican: 35.5 - 21,004</p>
+<p>Margin: D - 27.7</p>
+</section>
+
+<section id="johnson-county" class="county-result" hidden>
+<h2>Johnson County</h2>
+<p><strong>Republican:</strong> 66.3 - 51,588</p>
+<p>Democratic: 32.0 - 24,880</p>
+<p>Margin: R - 34.3</p>
+</section>
+
+<section id="brown-county" class="county-result" hidden>
+<h2>Brown County</h2>
+<p><strong>Republican:</strong> 65.5 - 5,647</p>
+<p>Democratic: 32.8 - 2,832</p>
+<p>Margin: R - 32.7</p>
+</section>
+
+<section id="shelby-county" class="county-result" hidden>
+<h2>Shelby County</h2>
+<p><strong>Republican:</strong> 73.1 - 14,438</p>
+<p>Democratic: 25.1 - 4,955</p>
+<p>Margin: R - 48.0</p>
+</section>
+
+<section id="bartholomew-county" class="county-result" hidden>
+<h2>Bartholomew County</h2>
+<p><strong>Republican:</strong> 62.7 - 22,220</p>
+<p>Democratic: 35.3 - 12,525</p>
+<p>Margin: R - 27.4</p>
+</section>
+
+<section id="rush-county" class="county-result" hidden>
+<h2>Rush County</h2>
+<p><strong>Republican:</strong> 75.9 - 5,812</p>
+<p>Democratic: 21.9 - 1,675</p>
+<p>Margin: R - 54.0</p>
+</section>
+
+<section id="decatur-county" class="county-result" hidden>
+<h2>Decatur County</h2>
+<p><strong>Republican:</strong> 78.4 - 9,491</p>
+<p>Democratic: 19.9 - 2,406</p>
+<p>Margin: R - 58.5</p>
+</section>
+
+<section id="fayette-county" class="county-result" hidden>
+<h2>Fayette County</h2>
+<p><strong>Republican:</strong> 77.5 - 7,625</p>
+<p>Democratic: 21.2 - 2,084</p>
+<p>Margin: R - 56.3</p>
+</section>
+
+<section id="union-county" class="county-result" hidden>
+<h2>Union County</h2>
+<p><strong>Republican:</strong> 77.2 - 2,698</p>
+<p>Democratic: 21.4 - 746</p>
+<p>Margin: R - 55.8</p>
+</section>
+
+<section id="franklin-county" class="county-result" hidden>
+<h2>Franklin County</h2>
+<p><strong>Republican:</strong> 81.5 - 9,810</p>
+<p>Democratic: 17.1 - 2,061</p>
+<p>Margin: R - 64.4</p>
+</section>
+
+<section id="knox-county" class="county-result" hidden>
+<h2>Knox County</h2>
+<p><strong>Republican:</strong> 74.4 - 11,236</p>
+<p>Democratic: 24.0 - 3,625</p>
+<p>Margin: R - 50.4</p>
+</section>
+
+<section id="daviess-county" class="county-result" hidden>
+<h2>Daviess County</h2>
+<p><strong>Republican:</strong> 81.5 - 9,322</p>
+<p>Democratic: 17.1 - 1,963</p>
+<p>Margin: R - 64.4</p>
+</section>
+
+<section id="martin-county" class="county-result" hidden>
+<h2>Martin County</h2>
+<p><strong>Republican:</strong> 79.4 - 3,961</p>
+<p>Democratic: 18.7 - 933</p>
+<p>Margin: R - 60.7</p>
+</section>
+
+<section id="lawrence-county" class="county-result" hidden>
+<h2>Lawrence County</h2>
+<p><strong>Republican:</strong> 74.6 - 15,830</p>
+<p>Democratic: 23.6 - 5,010</p>
+<p>Margin: R - 51.0</p>
+</section>
+
+<section id="jackson-county" class="county-result" hidden>
+<h2>Jackson County</h2>
+<p><strong>Republican:</strong> 76.8 - 14,323</p>
+<p>Democratic: 21.5 - 4,015</p>
+<p>Margin: R - 55.3</p>
+</section>
+
+<section id="jennings-county" class="county-result" hidden>
+<h2>Jennings County</h2>
+<p><strong>Republican:</strong> 78.5 - 9,273</p>
+<p>Democratic: 19.7 - 2,328</p>
+<p>Margin: R - 58.8</p>
+</section>
+
+<section id="ripley-county" class="county-result" hidden>
+<h2>Ripley County</h2>
+<p><strong>Republican:</strong> 80.1 - 11,526</p>
+<p>Democratic: 18.6 - 2,682</p>
+<p>Margin: R - 61.5</p>
+</section>
+
+<section id="dearborn-county" class="county-result" hidden>
+<h2>Dearborn County</h2>
+<p><strong>Republican:</strong> 78.4 - 20,844</p>
+<p>Democratic: 20.1 - 5,335</p>
+<p>Margin: R - 58.3</p>
+</section>
+
+<section id="gibson-county" class="county-result" hidden>
+<h2>Gibson County</h2>
+<p><strong>Republican:</strong> 74.8 - 11,896</p>
+<p>Democratic: 23.4 - 3,722</p>
+<p>Margin: R - 51.4</p>
+</section>
+
+<section id="pike-county" class="county-result" hidden>
+<h2>Pike County</h2>
+<p><strong>Republican:</strong> 76.7 - 4,610</p>
+<p>Democratic: 21.9 - 1,314</p>
+<p>Margin: R - 54.8</p>
+</section>
+
+<section id="dubois-county" class="county-result" hidden>
+<h2>Dubois County</h2>
+<p><strong>Republican:</strong> 70.0 - 14,983</p>
+<p>Democratic: 27.8 - 5,944</p>
+<p>Margin: R - 42.2</p>
+</section>
+
+<section id="orange-county" class="county-result" hidden>
+<h2>Orange County</h2>
+<p><strong>Republican:</strong> 75.3 - 6,467</p>
+<p>Democratic: 23.1 - 1,988</p>
+<p>Margin: R - 52.2</p>
+</section>
+
+<section id="washington-county" class="county-result" hidden>
+<h2>Washington County</h2>
+<p><strong>Republican:</strong> 76.5 - 9,739</p>
+<p>Democratic: 21.7 - 2,764</p>
+<p>Margin: R - 54.8</p>
+</section>
+
+<section id="scott-county" class="county-result" hidden>
+<h2>Scott County</h2>
+<p><strong>Republican:</strong> 74.9 - 7,633</p>
+<p>Democratic: 23.4 - 2,389</p>
+<p>Margin: R - 51.5</p>
+</section>
+
+<section id="posey-county" class="county-result" hidden>
+<h2>Posey County</h2>
+<p><strong>Republican:</strong> 71.0 - 9,206</p>
+<p>Democratic: 27.5 - 3,572</p>
+<p>Margin: R - 43.5</p>
+</section>
+
+<section id="vanderburgh-county" class="county-result" hidden>
+<h2>Vanderburgh County</h2>
+<p><strong>Republican:</strong> 55.6 - 41,056</p>
+<p>Democratic: 43.0 - 31,727</p>
+<p>Margin: R - 12.6</p>
+</section>
+
+<section id="warrick-county" class="county-result" hidden>
+<h2>Warrick County</h2>
+<p><strong>Republican:</strong> 64.3 - 21,280</p>
+<p>Democratic: 34.1 - 11,292</p>
+<p>Margin: R - 30.2</p>
+</section>
+
+<section id="spencer-county" class="county-result" hidden>
+<h2>Spencer County</h2>
+<p><strong>Republican:</strong> 70.6 - 7,364</p>
+<p>Democratic: 27.4 - 2,853</p>
+<p>Margin: R - 43.2</p>
+</section>
+
+<section id="perry-county" class="county-result" hidden>
+<h2>Perry County</h2>
+<p><strong>Republican:</strong> 64.0 - 5,549</p>
+<p>Democratic: 34.3 - 2,970</p>
+<p>Margin: R - 29.7</p>
+</section>
+
+<section id="crawford-county" class="county-result" hidden>
+<h2>Crawford County</h2>
+<p><strong>Republican:</strong> 73.2 - 3,668</p>
+<p>Democratic: 24.6 - 1,235</p>
+<p>Margin: R - 48.6</p>
+</section>
+
+<section id="harrison-county" class="county-result" hidden>
+<h2>Harrison County</h2>
+<p><strong>Republican:</strong> 72.5 - 14,830</p>
+<p>Democratic: 25.6 - 5,233</p>
+<p>Margin: R - 46.9</p>
+</section>
+
+<section id="floyd-county" class="county-result" hidden>
+<h2>Floyd County</h2>
+<p><strong>Republican:</strong> 56.9 - 23,408</p>
+<p>Democratic: 41.4 - 17,025</p>
+<p>Margin: R - 15.5</p>
+</section>
+
+<section id="clark-county" class="county-result" hidden>
+<h2>Clark County</h2>
+<p><strong>Republican:</strong> 59.3 - 34,734</p>
+<p>Democratic: 38.9 - 22,810</p>
+<p>Margin: R - 20.4</p>
+</section>
+
+<section id="jefferson-county" class="county-result" hidden>
+<h2>Jefferson County</h2>
+<p><strong>Republican:</strong> 67.1 - 9,614</p>
+<p>Democratic: 31.0 - 4,442</p>
+<p>Margin: R - 36.1</p>
+</section>
+
+<section id="ohio-county" class="county-result" hidden>
+<h2>Ohio County</h2>
+<p><strong>Republican:</strong> 77.0 - 2,381</p>
+<p>Democratic: 21.6 - 666</p>
+<p>Margin: R - 55.4</p>
+</section>
+
+<section id="switzerland-county" class="county-result" hidden>
+<h2>Switzerland County</h2>
+<p><strong>Republican:</strong> 78.0 - 3,319</p>
+<p>Democratic: 20.5 - 873</p>
+<p>Margin: R - 57.5</p>
+</section>
 </aside>
 
 </main>
 
+<footer>
+
+<div class="footer-container">
+
+<div class="footer-section">
+<h3>Plexus</h3>
+<p>Interactive election map visualization.</p>
+</div>
+
+<div class="footer-section">
+<h3>Site</h3>
+<ul>
+<li><a href="index.html">Home</a></li>
+<li><a href="united-states.html">United States</a></li>
+</ul>
+</div>
+
+<div class="footer-section">
+<h3>Information</h3>
+<ul>
+<li><a href="about.html">About</a></li>
+<li><a href="data-sources.html">Data Sources</a></li>
+</ul>
+</div>
+
+</div>
+
+<p class="footer-bottom">© 2026 Plexus</p>
+
+</footer>
+
 <script>
+function showCounty(id) {
+
+  const counties = document.querySelectorAll(".county-result");
+
+  counties.forEach(function(county) {
+    county.hidden = true;
+  });
+
+  document.getElementById(id).hidden = false;
+}
+
 function searchPage() {
   const year = document.getElementById("year").value;
   const region = document.getElementById("region").value;
