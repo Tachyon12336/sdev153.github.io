@@ -47,31 +47,24 @@ window.addEventListener('resize', resizeImageMap);
 </script>
 
 <body>
-
-  <!-- ===== HEADER ===== -->
   <header>
     <button class="back-button" aria-label="Go back" disabled>←</button>
     <div class="logo">Plexus</div>
     <div aria-hidden="true"></div>
   </header>
-
-  <!-- ===== BREADCRUMB ===== -->
+  
   <nav aria-label="Breadcrumb">
     <div class="breadcrumb">
       <span>Home</span>
     </div>
   </nav>
 
-  <!-- ===== MAIN CONTENT ===== -->
   <main>
-
-    <!-- ===== MAP SECTION ===== -->
     <section class="map-area">
       <h1>World</h1>
 
       <div class="map-container" role="region" aria-label="World map navigation">
 
-        <!-- IMAGE MAP -->
         <img
           src="world-new.png"
           usemap="#world-map"
@@ -80,8 +73,6 @@ window.addEventListener('resize', resizeImageMap);
         />
 
         <map name="world-map">
-
-          <!-- Example: North America -->
           <area
             shape="poly"
             coords="373,186,513,186,536,193,562,205,559,230,641,198,645,216,620,235,589,256,581,276,543,302,543,339,529,309,502,306,498,316,476,311,451,334,430,311,421,318,408,299,389,302,366,292,354,292,343,281,336,244"
@@ -90,15 +81,11 @@ window.addEventListener('resize', resizeImageMap);
             aria-label="United States"
             tabindex="0"
           >
-
-          <!-- Add more <area> elements here for other continents -->
-
         </map>
 
       </div>
     </section>
 
-    <!-- ===== INFO PANEL ===== -->
     <aside aria-live="polite">
       <h2>Welcome</h2>
       <p>
