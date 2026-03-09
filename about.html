@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+    
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>About | Plexus</title>
+<meta name="description" content="About Plexus election mapping project">
+<link rel="stylesheet" href="styles.css">
+<meta name="description" content="Interactive election maps and geographic voting data visualization.">
+<meta name="keywords" content="election maps, voting data, united states elections, geography">
+<meta name="author" content="David Spaniol">
+</head>
+
+<body>
+
+<header>
+<a href="index.html" class="back-button">←</a>
+<div class="logo">Plexus</div>
+
+</header>
+
+<nav>
+Home › About
+</nav>
+
+<main>
+
+<section class="map-area">
+
+<h1>About Plexus</h1>
+
+<p>
+Plexus is a web project focused on visualizing election data through
+interactive geographic maps. Users can explore election results by
+country, state, and county level.
+</p>
+
+<h2>Features</h2>
+
+<ul>
+<li>Interactive election maps</li>
+<li>Region-level voting data</li>
+<li>Historical election comparisons</li>
+<li>Geographic visualization of political trends</li>
+</ul>
+
+<h2>Feedback</h2>
+
+<form onsubmit="sendFeedback(); return false;">
+
+<label>Name</label>
+<input type="text" id="name" required>
+
+<label>Email</label>
+<input type="email" id="email" required>
+
+<label>Message</label>
+<textarea id="message"></textarea>
+
+<button type="submit">Send</button>
+
+</form>
+
+</section>
+</main>
+
+<footer>
+
+<div class="footer-container">
+
+<div class="footer-section">
+<h3>Plexus</h3>
+<p>Interactive election map visualization.</p>
+</div>
+
+<div class="footer-section">
+<h3>Site</h3>
+<ul>
+<li><a href="index.html">Home</a></li>
+<li><a href="united-states.html">United States</a></li>
+</ul>
+</div>
+
+<div class="footer-section">
+<h3>Information</h3>
+<ul>
+<li><a href="about.html">About</a></li>
+<li><a href="data-sources.html">Data Sources</a></li>
+</ul>
+</div>
+
+</div>
+
+<p class="footer-bottom">© 2026 Plexus</p>
+
+</footer>
+
+<script>
+function sendFeedback(){
+  const name = document.getElementById("name").value;
+  alert("Thank you for your feedback, " + name + "!");
+}
+</script>
+
+</body>
+</html>
