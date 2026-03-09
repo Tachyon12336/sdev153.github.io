@@ -1,145 +1,13 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Plexus | World Elections</title>
-
-  <style>
-    *, *::before, *::after {
-      box-sizing: border-box;
-    }
-
-    body {
-      margin: 0;
-      font-family: 'Trebuchet MS', Arial, sans-serif;
-      background-color: #fffff0;
-      color: #1a1a1a;
-    }
-
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    a:focus {
-      outline: 3px solid #005fcc;
-      outline-offset: 2px;
-    }
-    
-    header {
-      display: grid;
-      grid-template-columns: auto 1fr auto;
-      align-items: center;
-      gap: 0.75rem;
-      padding: 0.4rem 0.75rem;
-      border-bottom: 2px solid #e2e5e9;
-      background-color: #fffff0;
-    }
-
-    .back-button {
-      border: 2px solid #444;
-      background: none;
-      border-radius: 6px;
-      padding: 0.25rem 0.5rem;
-      cursor: not-allowed;
-      font-size: 0.9rem;
-      opacity: 0.6;
-    }
-
-    .logo {
-      font-weight: 700;
-      font-size: 1rem;
-      text-align: center;
-      white-space: nowrap;
-    }
-
-    nav[aria-label="Breadcrumb"] {
-      background-color: #eef1f5;
-      padding: 0.4rem 0.75rem;
-      font-size: 0.8rem;
-    }
-
-    .breadcrumb {
-      display: flex;
-      gap: 0.25rem;
-      color: #555;
-    }
-
-    main {
-      display: grid;
-      grid-template-columns: 1fr 320px;
-      gap: 1rem;
-      padding: 1rem;
-      height: calc(100vh - 96px);
-    }
-
-    @media (max-width: 900px) {
-      main {
-        grid-template-columns: 1fr;
-        height: auto;
-      }
-    }
-
-    .map-area {
-      background-color: #ffffff;
-      border-radius: 12px;
-      border: 2px solid #e2e5e9;
-      padding: 0.75rem;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .map-area h1 {
-      font-size: 1rem;
-      margin: 0 0 0.5rem 0;
-    }
-
-    .map-container {
-      flex: 1;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background-color: #dde3ea;
-      border-radius: 10px;
-      overflow: hidden;
-      position: relative;
-    }
-
-    .world-image {
-      width: 100%;
-      height: auto;
-      max-height: 100%;
-      object-fit: contain;
-      display: block;
-    }
-
-    aside {
-      background-color: #ffffff;
-      border-radius: 12px;
-      border: 2px solid #e2e5e9;
-      padding: 0.75rem;
-      overflow-y: auto;
-    }
-
-    aside h2 {
-      margin-top: 0;
-      font-size: 1rem;
-    }
-
-    .visually-hidden {
-      position: absolute;
-      width: 1px;
-      height: 1px;
-      padding: 0;
-      margin: -1px;
-      overflow: hidden;
-      clip: rect(0, 0, 0, 0);
-      white-space: nowrap;
-      border: 0;
-    }
-  </style>
+  <link rel="stylesheet" href="styles.css">
+  <meta name="description" content="Interactive election maps and geographic voting data visualization.">
+  <meta name="keywords" content="election maps, voting data, united states elections, geography">
+  <meta name="author" content="David Spaniol">
 </head>
 
 <script>
@@ -180,27 +48,32 @@ window.addEventListener('resize', resizeImageMap);
 
 <body>
 
+  <!-- ===== HEADER ===== -->
   <header>
     <button class="back-button" aria-label="Go back" disabled>←</button>
     <div class="logo">Plexus</div>
     <div aria-hidden="true"></div>
   </header>
 
+  <!-- ===== BREADCRUMB ===== -->
   <nav aria-label="Breadcrumb">
     <div class="breadcrumb">
       <span>Home</span>
     </div>
   </nav>
 
+  <!-- ===== MAIN CONTENT ===== -->
   <main>
 
+    <!-- ===== MAP SECTION ===== -->
     <section class="map-area">
       <h1>World</h1>
 
       <div class="map-container" role="region" aria-label="World map navigation">
 
+        <!-- IMAGE MAP -->
         <img
-          src="world.png"
+          src="world-new.png"
           usemap="#world-map"
           alt="World map divided into selectable continents"
           class="world-image"
@@ -208,6 +81,7 @@ window.addEventListener('resize', resizeImageMap);
 
         <map name="world-map">
 
+          <!-- Example: North America -->
           <area
             shape="poly"
             coords="373,186,513,186,536,193,562,205,559,230,641,198,645,216,620,235,589,256,581,276,543,302,543,339,529,309,502,306,498,316,476,311,451,334,430,311,421,318,408,299,389,302,366,292,354,292,343,281,336,244"
@@ -217,11 +91,14 @@ window.addEventListener('resize', resizeImageMap);
             tabindex="0"
           >
 
+          <!-- Add more <area> elements here for other continents -->
+
         </map>
 
       </div>
     </section>
 
+    <!-- ===== INFO PANEL ===== -->
     <aside aria-live="polite">
       <h2>Welcome</h2>
       <p>
@@ -235,6 +112,37 @@ window.addEventListener('resize', resizeImageMap);
     </aside>
 
   </main>
+
+  <footer>
+
+<div class="footer-container">
+
+<div class="footer-section">
+<h3>Plexus</h3>
+<p>Interactive election map visualization.</p>
+</div>
+
+<div class="footer-section">
+<h3>Site</h3>
+<ul>
+<li><a href="index.html">Home</a></li>
+<li><a href="united-states.html">United States</a></li>
+</ul>
+</div>
+
+<div class="footer-section">
+<h3>Information</h3>
+<ul>
+<li><a href="about.html">About</a></li>
+<li><a href="data-sources.html">Data Sources</a></li>
+</ul>
+</div>
+
+</div>
+
+<p class="footer-bottom">© 2026 Plexus</p>
+
+</footer>
 
 </body>
 </html>
